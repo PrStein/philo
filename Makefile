@@ -6,9 +6,10 @@ FLAGS    = -Wall -Wextra -Werror -g
 
 DEL = /bin/rm -f
 
-SRCS =     ./srcs/philo.c \
+SRCS =     ./srcs/main.c\
 			./srcs/error_arg.c\
 			./srcs/init.c\
+			./srcs/philo.c\
 
 
 SRCS_O    = ${SRCS:.c=.o}

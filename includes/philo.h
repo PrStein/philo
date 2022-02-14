@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:26:26 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/02/06 23:53:02 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:43:49 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 #include <stdio.h>
 #include <pthread.h>
+#include <stdlib.h>
 
 typedef struct s_philo {
-	int	t_he_eat
+	pthread_t t;
+	pthread_mutex_t *left_fork;
+	pthread_mutex_t *right_fork;
+	int	index;
+	int	t_he_eat;
+	int	state;
 }				t_philo;
 
 typedef struct s_time {
@@ -32,9 +38,12 @@ typedef struct s_struct {
 	t_time	base;
 }				t_struct;
 
+t_philo	*init_philo(t_struct *global);
+
 void	error_arg(int ac);
 void	init_time(char **av, t_struct *global);
-void	start_philo(t_struct *global);
+void	init_fork(t_struct *global, t_philo *philo);
+void	philo(t_struct *global);
 
 int	check_arg(char **av);
 int	valid_or_not(char **av);

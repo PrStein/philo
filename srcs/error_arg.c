@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:41:06 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/02/06 22:53:25 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/02/13 23:31:11 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	check_arg(char **av)
 		}
 		i++;
 	}
+	if (ft_atoi(av[1]) < 2)
+		return (1);
 	return (0);
 }
 

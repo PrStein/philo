@@ -10,6 +10,7 @@ SRCS =     ./srcs/main.c\
 			./srcs/error_arg.c\
 			./srcs/init.c\
 			./srcs/philo.c\
+			./srcs/philo_eat_and_display.c
 
 
 SRCS_O    = ${SRCS:.c=.o}

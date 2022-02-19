@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:41:06 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/02/13 23:31:11 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/02/19 20:23:26 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	valid_or_not(char **av)
 {
-	int i;
+	int	i;
 
 	i = check_arg(av);
 	if (i == 1)
@@ -24,8 +24,8 @@ int	valid_or_not(char **av)
 
 int	check_arg(char **av)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (av[i])
@@ -39,14 +39,12 @@ int	check_arg(char **av)
 		}
 		i++;
 	}
-	if (ft_atoi(av[1]) < 2)
-		return (1);
 	return (0);
 }
 
 void	error_arg(int ac)
 {
-	if (ac < 6)
+	if (ac < 5)
 		printf("Missing arguments\n");
 	else if (ac > 6)
 		printf("Too many arguments\n");

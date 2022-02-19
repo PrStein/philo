@@ -2,7 +2,7 @@ NAME = philo
 
 CC = clang
 
-FLAGS    = -Wall -Wextra -Werror -g
+FLAGS    = -Wall -Wextra -Werror -pthread -g
 
 DEL = /bin/rm -f
 

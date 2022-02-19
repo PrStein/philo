@@ -6,13 +6,13 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 23:31:08 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/02/17 21:42:00 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/02/19 21:23:18 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long	good_time()
+long	good_time(void)
 {
 	struct timeval	time;
 
@@ -22,8 +22,8 @@ long	good_time()
 
 void	*who_is_dead(void *p_philo)
 {
-	t_philo *philo;
-	t_struct *n_global;
+	t_philo		*philo;
+	t_struct	*n_global;
 
 	philo = (t_philo *)p_philo;
 	n_global = philo->global;
@@ -44,9 +44,9 @@ void	*who_is_dead(void *p_philo)
 
 void	*philosophers(void *p_philo)
 {
-	t_philo *philo;
-	t_struct *n_global;
-	pthread_t death;
+	t_philo		*philo;
+	t_struct	*n_global;
+	pthread_t	death;
 
 	philo = (t_philo *)p_philo;
 	n_global = philo->global;
@@ -55,7 +55,8 @@ void	*philosophers(void *p_philo)
 	while (n_global->state == 0 && philo->stop == 0)
 	{
 		eat(philo);
-		if (n_global->base.n_time_eat && philo->t_he_eat == n_global->base.n_time_eat)
+		if (n_global->base.n_time_eat
+			&& philo->t_he_eat == n_global->base.n_time_eat)
 			philo->stop = 1;
 		display(philo, "is sleeping");
 		usleep(n_global->base.t_to_sleep * 1000);
@@ -66,7 +67,7 @@ void	*philosophers(void *p_philo)
 
 void	go_philo(t_struct *global, t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < global->base.n_philo)
@@ -85,7 +86,7 @@ void	go_philo(t_struct *global, t_philo *philo)
 
 void	finished(t_struct *global, t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pthread_mutex_destroy(&philo[i].stdout_mutex);
@@ -97,16 +98,4 @@ void	finished(t_struct *global, t_philo *philo)
 		i++;
 	}
 	free(philo);
-}
-
-void	philo(t_struct *global)
-{
-	int i;
-	t_philo *philo;
-
-	i = 0;
-	global->start = good_time();
-	philo = init_philo(global);
-	go_philo(global, philo);
-	finished(global, philo);
 }

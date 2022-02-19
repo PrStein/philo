@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:54:57 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/02/17 21:47:18 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/02/19 21:21:15 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ void	eat(t_philo *philo)
 	display(philo, "Has taken the forks");
 	if (philo->global->base.n_time_eat)
 		philo->t_he_eat++;
-	philo->last_meal = good_time();
 	display(philo, "is eating");
+	philo->last_meal = good_time();
+	usleep(philo->global->base.t_to_eat * 1000);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }

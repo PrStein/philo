@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 22:56:38 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/02/17 21:46:37 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/02/19 20:06:07 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	init_fork(t_struct *global, t_philo *philo)
 
 t_philo	*init_philo(t_struct *global)
 {
-	t_philo *philo;
-	int i;
-	pthread_mutex_t stdout_mutex;
-	pthread_mutex_t state_mutex;
+	t_philo			*philo;
+	int				i;
+	pthread_mutex_t	stdout_mutex;
+	pthread_mutex_t	state_mutex;
 
 	philo = malloc(sizeof(t_philo) * global->base.n_philo);
 	if (!philo)
@@ -86,5 +86,4 @@ void	init_time(int ac, char **av, t_struct *global)
 		global->base.n_time_eat = ft_atoi(av[5]);
 	else
 	global->base.n_time_eat = 0;
-
 }

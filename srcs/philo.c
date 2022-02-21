@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 23:31:08 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/02/19 21:23:18 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:08:39 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ void	*who_is_dead(void *p_philo)
 
 	philo = (t_philo *)p_philo;
 	n_global = philo->global;
-	while (n_global->state == 0 && philo->stop == 0)
+	while (philo->global->state == 0 && philo->stop == 0)
 	{
-		if (good_time() - philo->last_meal > n_global->base.t_to_die)
+		// printf("Philo id %d | last meal == %ld\n", philo->index, good_time() - philo->last_meal);
+		if ((good_time() - philo->last_meal) > n_global->base.t_to_die)
 		{
 			display(philo, "died");
 			pthread_mutex_lock(&philo->state_mutex);
 			philo->stop = 1;
-			n_global->state = 1;
+			philo->global->state = 1;
 			pthread_mutex_unlock(&philo->state_mutex);
 			break ;
 		}
@@ -52,7 +53,10 @@ void	*philosophers(void *p_philo)
 	n_global = philo->global;
 	pthread_create(&death, NULL, &who_is_dead, philo);
 	pthread_detach(death);
-	while (n_global->state == 0 && philo->stop == 0)
+	// if (philo->index % 2 == 0)
+	// 	usleep(n_global->base.t_to_eat * 1000);
+	philo->index % 2 ? 0 : usleep(n_global->base.t_to_eat * 1000);
+	while (philo->global->state == 0 && philo->stop == 0)
 	{
 		eat(philo);
 		if (n_global->base.n_time_eat

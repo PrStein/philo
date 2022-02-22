@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:54:57 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/02/21 15:49:48 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:04:32 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,8 @@ void	display(t_philo *philo, char *msg)
 
 void	eat(t_philo *philo)
 {
-	// if (philo->index % 2 == 0)
-	// {
-		// usleep(philo->global->base.t_to_eat * 1000);
-		pthread_mutex_lock(philo->right_fork);
-		pthread_mutex_lock(philo->left_fork);
-	// }
-	// else if (philo->index % 2 != 0)
-	// {
-	// 	pthread_mutex_lock(philo->left_fork);
-	// 	pthread_mutex_lock(philo->right_fork);
-	// }
+	pthread_mutex_lock(philo->right_fork);
+	pthread_mutex_lock(philo->left_fork);
 	display(philo, "has taken the forks");
 	philo->last_meal = good_time();
 	display(philo, "is eating");
